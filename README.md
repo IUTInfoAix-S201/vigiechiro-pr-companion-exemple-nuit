@@ -11,7 +11,7 @@ parser le fichier d'observations et rejouer les segments audio.
 > [!IMPORTANT]
 > Ce dépôt ne contient qu'un **échantillon** des fichiers audio (56 `.wav`, ~165 Mo),
 > choisi pour couvrir tous les taxons détectés. La nuit complète (environ 3 700 `.wav`,
-> 11 Go) est archivée sur Zenodo : **DOI à compléter après dépôt**.
+> 11 Go) est archivée sur Zenodo, DOI [10.5281/zenodo.20492247](https://doi.org/10.5281/zenodo.20492247).
 > Les fichiers de métadonnées (`observations.csv`...) sont en revanche **complets** :
 > ils décrivent toute la nuit, y compris les enregistrements non inclus ici.
 
