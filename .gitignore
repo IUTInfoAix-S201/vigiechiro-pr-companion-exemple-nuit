@@ -1,0 +1,19 @@
+# Les .wav de bruts/ et transformes/ sont un echantillon CURATED et sont
+# versionnes volontairement. La nuit complete (~11 Go) vit sur Zenodo, pas ici.
+
+# Fichiers intermediaires Kaleidoscope : volontairement exclus
+# (inutiles a la SAE, contiennent des chemins machine personnels).
+meta.csv
+log.txt
+settings.ini
+
+# Verrous LibreOffice / OpenOffice
+.~lock.*#
+
+# Junk OS / editeurs
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.idea/
+.vscode/
