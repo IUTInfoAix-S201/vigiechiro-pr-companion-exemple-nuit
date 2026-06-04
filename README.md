@@ -31,12 +31,12 @@ parser le fichier d'observations et rejouer les segments audio.
 ```mermaid
 flowchart LR
     A["🎙️ Enregistreur<br/>PR1925492"] -->|wav bruts<br/>2-30 s| B["📁 bruts/"]
-    B -->|découpage<br/>Kaleidoscope| C["📁 transformes/<br/>segments _000"]
+    B -->|"découpage Kaleidoscope<br/>+ préfixe site & suffixe _NNN"| C["📁 transformes/<br/>segments _000"]
     C -->|classification<br/>Tadarida| D["📄 observations.csv<br/>taxon + probabilité"]
 ```
 
 1. L'enregistreur capture des `.wav` bruts dès qu'un son ultrasonore franchit le seuil de déclenchement (`bruts/`).
-2. Le logiciel Kaleidoscope découpe chaque enregistrement en segments centrés sur les cris (`transformes/`, suffixe `_000`, `_001`...).
+2. Le logiciel Kaleidoscope découpe chaque enregistrement en segments centrés sur les cris (`transformes/`). Cette étape **renomme** aussi les fichiers : elle ajoute en tête le préfixe de campagne `Car640380-2026-Pass2-Z1-` (site / passage / zone) et en queue un suffixe de segment `_000`, `_001`...
 3. Le classifieur **Tadarida** attribue à chaque segment un taxon et une probabilité, consignés dans `observations.csv`.
 
 > Les fichiers intermédiaires propres à Kaleidoscope (`meta.csv`, `log.txt`,
@@ -52,7 +52,7 @@ flowchart LR
 ├── LogPR1925492.txt              # journal de l'enregistreur (démarrage, batterie, paramètres)
 ├── PaRecPR1925492_THLog.csv      # température / humidité, un relevé toutes les 10 min
 ├── bruts/                        # enregistrements bruts (échantillon)
-│   └── Car640380-2026-Pass2-Z1-PaRecPR1925492_AAAAMMJJ_HHMMSS.wav
+│   └── PaRecPR1925492_AAAAMMJJ_HHMMSS.wav   # nommage natif de l'enregistreur, sans préfixe
 └── transformes/
     ├── Car640380-...-PaRecPR1925492_AAAAMMJJ_HHMMSS_NNN.wav   # segments
     ├── observations.csv          # COMPLET : 4031 détections de la nuit
@@ -61,14 +61,25 @@ flowchart LR
 
 ### Convention de nommage
 
+Le nom évolue entre le brut et le transformé. Le **brut**, tel que produit par
+l'enregistreur (dans `bruts/`), ne porte que l'identifiant PR, la date et l'heure :
+
+```
+PaRecPR1925492_20260422_202623.wav
+└── PR ──┘ └─ date ─┘└heure┘
+```
+
+Le **transformé** (segment dans `transformes/`, et nom référencé dans `observations.csv`)
+ajoute un préfixe de campagne en tête et un suffixe de segment en queue :
+
 ```
 Car640380-2026-Pass2-Z1-PaRecPR1925492_20260422_202623_000.wav
 └──────── site / passage / zone ───────┘└── PR ──┘ └─ date ─┘└heure┘└seg┘
 ```
 
 - `AAAAMMJJ_HHMMSS` : date et heure de début de l'enregistrement brut.
-- Suffixe `_NNN` (segments uniquement) : numéro du segment découpé dans cet enregistrement (`_000` pour le premier).
-- Le segment `..._HHMMSS_000.wav` de `transformes/` correspond au brut `..._HHMMSS.wav` de `bruts/` (on retire le suffixe `_NNN`). Tous les segments n'ont pas forcement leur brut conserve : votre application doit gerer ce cas.
+- Le découpage ajoute **deux choses** au nom du brut : le préfixe `Car640380-2026-Pass2-Z1-` (site / passage / zone, métadonnée de campagne) **en tête**, et le suffixe `_NNN` (numéro du segment, `_000` pour le premier) **en queue**.
+- Pour retrouver le brut d'un segment, il faut donc retirer **le préfixe `Car640380-2026-Pass2-Z1-` ET le suffixe `_NNN`** : `Car640380-2026-Pass2-Z1-PaRecPR1925492_..._000.wav` → `PaRecPR1925492_....wav`. Tous les segments n'ont pas forcément leur brut conservé : votre application doit gérer ce cas.
 
 > Dans la donnée d'origine, les fichiers d'observations portent un préfixe technique
 > `<hash>-participation-<id>-observations.csv`. Ils ont été renommés `observations.csv`
@@ -82,7 +93,7 @@ Séparateur `;`, valeurs entre guillemets, encodage UTF-8. Une ligne par cri dé
 
 | Colonne | Description |
 |---|---|
-| `nom du fichier` | nom du segment (`transformes/`), sans extension `.wav` |
+| `nom du fichier` | nom du segment transformé (`transformes/`), **avec** le préfixe de campagne, sans extension `.wav` |
 | `temps_debut` | début du cri dans le segment (secondes) |
 | `temps_fin` | fin du cri (secondes) |
 | `frequence_mediane` | fréquence médiane du cri (kHz) |
