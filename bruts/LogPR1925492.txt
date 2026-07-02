@@ -1,0 +1,22 @@
+22/04/26 - 16:02:20 PR1925492 Test accès carte SD 
+22/04/26 - 16:02:20 PR1925492 ==========================================
+22/04/26 - 16:02:20 PR1925492 Démarrage Passive Recorder numéro de série 1925492, V1.01, CPU 600000000, T4.1
+22/04/26 - 16:02:21 PR1925492 ### Passage en mode Protocole Point fixe
+22/04/26 - 16:02:21 PR1925492 Sonde température/hygrométrie présente, lecture toutes les 600s
+22/04/26 - 16:02:21 PR1925492 Batteries internes 4.1V (90%) (MCP3221)
+22/04/26 - 16:02:21 PR1925492 Paramètres : Acquisi. 20:25-07:47, Fe384kHz FL N FPH 00, S. R. 16dB 1dt. GN0, Bd. Freq. 8-120kHz, Wav 2-30s SD 99%
+22/04/26 - 16:02:21 PR1925492 CRecorder Nb buffer 19, taille buffer 311296, pre-trigger max 405ms
+22/04/26 - 16:02:22 PR1925492 ### Passage en mode Veille
+22/04/26 - 16:02:36 PR1925492 Mise en veille, réveil à 20:25, Bat. Interne 4.1 90%, Bat. Externe 0.0  0%
+22/04/26 - 20:26:13 PR1925492 Wakeup by ALARM... Cpt 1
+22/04/26 - 20:26:13 PR1925492 Test accès carte SD 
+22/04/26 - 20:26:13 PR1925492 ==========================================
+22/04/26 - 20:26:14 PR1925492 ### Passage en mode Protocole Point fixe
+22/04/26 - 20:26:14 PR1925492 Sonde température/hygrométrie présente, lecture toutes les 600s
+22/04/26 - 20:26:14 PR1925492 Batteries internes 4.1V (90%) (MCP3221)
+22/04/26 - 20:26:14 PR1925492 Paramètres : Acquisi. 20:25-07:47, Fe384kHz FL N FPH 00, S. R. 16dB 1dt. GN0, Bd. Freq. 8-120kHz, Wav 2-30s SD 99%
+22/04/26 - 20:26:14 PR1925492 CRecorder Nb buffer 19, taille buffer 311296, pre-trigger max 405ms
+22/04/26 - 20:26:15 PR1925492 Bruit -113dB Min/Max -113/-110
+23/04/26 - 07:48:00 PR1925492 ### Passage en mode Veille
+23/04/26 - 07:48:00 PR1925492 CModeVeille::BeginMode Wake up by ALARM
+23/04/26 - 07:52:21 PR1925492 Mise en veille, réveil à 20:25, Bat. Interne 4.0 90%, Bat. Externe 0.0  0%

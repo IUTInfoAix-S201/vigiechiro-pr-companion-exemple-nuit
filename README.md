@@ -9,8 +9,10 @@ manipulation des données capteurs : votre application doit pouvoir lire l'arbor
 parser le fichier d'observations et rejouer les segments audio.
 
 > [!IMPORTANT]
-> Ce dépôt ne contient qu'un **échantillon** des fichiers audio (56 `.wav`, ~165 Mo),
-> choisi pour couvrir tous les taxons détectés. La nuit complète (environ 3 700 `.wav`,
+> Ce dépôt ne contient qu'un **échantillon** des enregistrements **bruts** (157 `.wav`, ~590 Mo,
+> soit ~10 % de la nuit), à **384 kHz** comme en sortie d'enregistreur, choisi pour couvrir une large
+> variété de taxons. Les **séquences transformées ne sont pas versionnées** : l'application les
+> régénère à l'import (expansion ×10 + découpage 5 s). La nuit complète (environ 3 700 `.wav`,
 > 11 Go) est archivée sur Zenodo, DOI [10.5281/zenodo.20492247](https://doi.org/10.5281/zenodo.20492247).
 > Les fichiers de métadonnées (`observations.csv`...) sont en revanche **complets** :
 > ils décrivent toute la nuit, y compris les enregistrements non inclus ici.
@@ -51,10 +53,9 @@ flowchart LR
 ├── LICENSE                       # CC BY 4.0
 ├── LogPR1925492.txt              # journal de l'enregistreur (démarrage, batterie, paramètres)
 ├── PaRecPR1925492_THLog.csv      # température / humidité, un relevé toutes les 10 min
-├── bruts/                        # enregistrements bruts (échantillon)
+├── bruts/                        # 157 enregistrements bruts 384 kHz (échantillon ~10 %)
 │   └── PaRecPR1925492_AAAAMMJJ_HHMMSS.wav   # nommage natif de l'enregistreur, sans préfixe
-└── transformes/
-    ├── Car640380-...-PaRecPR1925492_AAAAMMJJ_HHMMSS_NNN.wav   # segments
+└── transformes/                  # segments régénérés par l'application à l'import (non versionnés)
     ├── observations.csv          # COMPLET : 4031 détections de la nuit
     └── observations_Vu.csv       # idem, variante "vu / validé"
 ```
